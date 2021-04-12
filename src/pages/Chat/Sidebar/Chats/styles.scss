@@ -1,0 +1,13 @@
+@use '../../../../styles/global/colors';
+
+.sidebar__chats {
+	background-color: colors.$layout-quinary-color;
+	overflow-y: auto;
+}
+.sidebar__chats::-webkit-scrollbar {
+	width: 6px;
+	height: 6px;
+}
+.sidebar__chats::-webkit-scrollbar-thumb {
+	background-color: rgba(0, 0, 0, 0.2);
+}
