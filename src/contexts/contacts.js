@@ -25,6 +25,7 @@ function reducer(state, action) {
     case 'SET_CONTACTS_DATA':
       return {
         ...state,
+        id: action.payload.id,
         name: action.payload.name,
         avatar: action.payload.avatar,
         lastMessage: action.payload.lastMessage,
