@@ -16,8 +16,8 @@ function Chat() {
   const [user, setUser] = useState(initialValue);
 
   useEffect(() => {
-    socketClient.on('chat.currentUser', (user) => {
-      setUser(user);
+    socketClient.on('chat.currentUser', ({socketId: id, username: name, avatar}) => {
+      setUser({ id, name, avatar});
     })
   }, []);
 

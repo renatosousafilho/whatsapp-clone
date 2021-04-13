@@ -13,6 +13,7 @@ function Chats() {
 
   useState(() => {
     socketClient.on('chat.updateUsers', (users) => {
+      console.log(users);
       setUsers(users.filter((u) => u.socketId !== socketClient.id));
     });
   }, []);

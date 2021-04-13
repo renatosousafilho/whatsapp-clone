@@ -16,9 +16,10 @@ import {
   Mic,
   Send,
 } from '@material-ui/icons';
+import socketClient from '../../../../utils/socketClient';
 
 function Content({ user }) {
-  const { avatar, name, lastSeen } = useContactsState();
+  const { id, avatar, name, lastSeen } = useContactsState();
 
   const initialListMessages = [
      {
@@ -42,9 +43,17 @@ function Content({ user }) {
     }
   }, [avatar, listOfMessages]);
 
+  useEffect(() => {
+    socketClient.on('private.message', ({message, origin}) => {
+      console.log(`chegou nova mensagem ${message}`);
+      setListOfMessages([...listOfMessages, { author: origin, body: message }]);
+    });
+  }, []);
+
   function sendMessage(e) {
     e.preventDefault();
-    setListOfMessages([...listOfMessages, { author: 1234, body: text }]);
+    setListOfMessages([...listOfMessages, { author: user.id, body: text }]);
+    socketClient.emit('private.message', { message: text, destination: id, origin: user.id });
     setText('');
   }
 
@@ -73,8 +82,8 @@ function Content({ user }) {
       </header>
 
       <section ref={body} className="body__wallpaper">
-         {listOfMessages.map((msg) => (
-          <MessageBox key={msg.body} msg={msg} user={user} />
+         {listOfMessages.map((msg, index) => (
+          <MessageBox key={index} msg={msg} user={user} />
         ))}
       </section>
 
