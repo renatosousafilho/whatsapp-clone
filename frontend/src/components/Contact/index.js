@@ -5,7 +5,7 @@ import { useChatScreenDispatch } from '../../contexts/chat-screen';
 import { useContactsDispatch } from '../../contexts/contacts';
 
 function Contact({
-  id, name, avatar, lastMessage, timeLastMessage, lastSeen, pinned, mute, unreadMessages,
+  id, name, avatar
 }) {
   const dispatchChatScreen = useChatScreenDispatch();
   const dispatchContactsData = useContactsDispatch();
@@ -17,12 +17,6 @@ function Contact({
         id,
         name,
         avatar,
-        lastMessage,
-        timeLastMessage,
-        lastSeen,
-        pinned,
-        mute,
-        unreadMessages,
       },
     });
     dispatchChatScreen({
@@ -37,10 +31,10 @@ function Contact({
       <img src={avatar} alt={name} className="contacts__img" />
       <div className="contacts__texts">
         <h3 className="texts__name">{name}</h3>
-        <span className="texts__lastMessage">{lastMessage}</span>
+        <span className="texts__lastMessage"></span>
       </div>
       <div className="contacts__details">
-        <span className="details__time">{timeLastMessage}</span>
+        <span className="details__time"></span>
         {/* {hidden && (
           <div className="details__unreadMessage">
             {unreadMessages}
