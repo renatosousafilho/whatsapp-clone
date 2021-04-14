@@ -6,12 +6,17 @@ import { DonutLarge, Chat, MoreVert } from '@material-ui/icons';
 import './styles.scss';
 
 
-function Header() {
+function Header({user}) {
   const [openDropDown, setOpenDropDown] = useState(false);
 
   return (
     <header className="sidebar__header">
-      <Avatar className="sidebar__avatar"/>
+      {user.name}
+      {user.avatar
+        ? <img src={user.avatar} alt='avatar' />
+        : <Avatar className="sidebar__avatar"/>
+      }
+      
       <div className="sidebar__options">  
         <IconButton onClick={() => setOpenDropDown(!openDropDown)}>
           <MoreVert className="options__item" />
