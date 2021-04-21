@@ -21,16 +21,7 @@ import socketClient from '../../../../utils/socketClient';
 function Content({ user }) {
   const { id, avatar, name, lastSeen } = useContactsState();
 
-  const initialListMessages = [
-     {
-      author: 123,
-      body: 'In ad voluptate sit Lorem enim ullamco magna pariatur deserunt. Laborum adipisicing dolore eiusmod ad minim fugiat. Quis et ad qui ea minim esse eiusmod deserunt laborum nulla ex velit culpa deserunt. Non consectetur pariatur Lorem id cupidatat aute ex dolore proident elit.',
-    },
-    {
-      author: 1234,
-      body: 'In ad voluptate sit Lorem enim ullamco magna pariatur deserunt. Laborum adipisicing dolore eiusmod ad minim fugiat. Quis et ad qui ea minim esse eiusmod deserunt laborum nulla ex velit culpa deserunt. Non consectetur pariatur Lorem id cupidatat aute ex dolore proident elit.',
-    },
-  ];
+  const initialListMessages = [];
 
   const [listOfMessages, setListOfMessages] = useState(initialListMessages);
   const [text, setText] = useState('');
@@ -48,7 +39,7 @@ function Content({ user }) {
       console.log(`chegou nova mensagem ${message}`);
       setListOfMessages([...listOfMessages, { author: origin, body: message }]);
     });
-  }, []);
+  }, [listOfMessages]);
 
   function sendMessage(e) {
     e.preventDefault();
